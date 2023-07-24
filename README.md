@@ -39,7 +39,7 @@ You'll need:
 - docker (I am currently using v20.10.11 Community edition)
 - Buildkite agent
 - A buildkite organization
-
+- vault ([Installation](https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-install))
 
 
 

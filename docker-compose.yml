@@ -1,0 +1,17 @@
+version: '2.3'
+services:
+  vault-svc:
+    image: vault:1.13.1
+    healthcheck: 
+        test: wget http:127.0.0.1:8200/v1/sys/health
+        interval: 2s
+        timeout: 10s
+        retries: 5
+    cap_add:
+        - IPC_LOCK
+    ports:
+      - "8200:8200"
+    environment:
+        - VAULT_ADDR="http://0.0.0.0:8200"
+        - VAULT_DEV_ROOT_TOKEN_ID
+

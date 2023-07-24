@@ -1,0 +1,19 @@
+steps:
+    - label: ":shipit: Deploy the Thing :tm: "
+      command: ./scripts/deploy.sh
+      agents:
+        queue: vault
+      plugins:
+        - vault-secrets#v1.1.0:
+            server: "http://localhost:8200"
+            path: secret/buildkite
+            auth:
+              method: "approle"
+              role-id: "${VAULT_ROLE_ID}"
+    - wait
+
+    - label: ":vault: :bomb: clean up"
+      command: docker compose down
+      agents:
+        queue: vault
+

@@ -1,0 +1,22 @@
+# This example should be running on a single agent
+# for simplicity sake, we are configuring
+# an ephemeral vault server, so the data will not persist
+
+steps:
+    - label: ":vault: launch vault server"
+      command: docker compose up -d
+      agents:
+        queue: vault
+    
+    - wait    
+
+    - label: ":hammer_and_wrench: configure vault"
+      command: ./scripts/setup-vault.sh
+      agents:
+        queue: vault
+
+
+    - label: ":pipeline: Upload Deploy pipeline"
+      command: buildkite-agent pipeline upload .buildkite/deploy.yml
+      agents:
+        queue: vault

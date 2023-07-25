@@ -7,6 +7,8 @@
 # we'll reference the var here, but you could hardcode it if you want
 # We also want to ensure we aren't trying to use the default of https
 # for the cli commands
+set -euo pipefail
+
 
 export VAULT_TOKEN="${VAULT_DEV_ROOT_TOKEN_ID:-"buildkite-is-cool"}"
 export VAULT_ADDRESS="http://127.0.0.1:8220"
@@ -19,14 +21,7 @@ vault kv put secret/buildkite/vault-buildkite-demo/env some_value="alpacas" && s
 # enable approle authentication
 vault auth enable approle && sleep 1
 
-# create our agent policy - this is how the agent will acquire
-# the secret ID for the pipeline
-#cat << EOF | vault policy write buildkite -
-#  path "buildkite/vault-buildkite-demo/*" {
-#    capabilities = [ "read", "list" ]
-#  }
-#EOF
-#
+# create the policy that will be scoped to the token requested by the agent role
 cat ./config/agent-policy.hcl | vault policy write buildkite -
 
 sleep 1

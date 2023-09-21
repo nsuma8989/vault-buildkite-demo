@@ -13,7 +13,7 @@ steps:
     - wait
     
     - label: ":shipit: Get secret from mountpath kv/ :tm: "
-      command: ./scripts/artifact.sh
+      command: ./scripts/secret.sh
       agents:
         queue: vault
       plugins:

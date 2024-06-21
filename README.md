@@ -12,7 +12,7 @@ Create a new build, and watch vault do it's thing!
 
 The pipeline located in `./buildkite` will run a vault server on the target agent (ideally, this should be a single persistent agent so that the config will be shared.)
 
-Some setup on your agent is required to ensure the pipeline runs as expected.
+Some setup on your agent is required to ensure the pipeline runs as expected 
 
 Add this to your agent's `Environment hook`:
 

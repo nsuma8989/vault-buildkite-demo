@@ -1,6 +1,6 @@
 # Buildkite+Vault Demo Repository
 
-This repository contains some pieces to configure a local vault environment, and run a pipeline using the vault secrets buildkite plugin.
+This repository contains some pieces to configure a local vault environment, and run a pipeline using the vault secrets buildkite plugin
 
 ## Usage
 
